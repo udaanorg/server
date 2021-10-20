@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import app from './app';
+import 'reflect-metadata';
 import config from './config';
 import { connectToDatabase } from './database';
 
