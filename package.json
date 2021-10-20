@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "udaanorg's backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node build/server.js",
+    "build": "npm run lint && npm run pretty && npx babel src/ -d build/",
+    "lint": "npx eslint . --fix",
+    "pretty": "npx prettier --write .",
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udaanorg/server.git"
+  },
+  "author": "udaanorg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/udaanorg/server/issues"
+  },
+  "homepage": "https://github.com/udaanorg/server#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "eslint": "^8.0.1",
+    "jest": "^27.3.1",
+    "prettier": "2.4.1"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "typeorm": "^0.2.38"
+  }
+}
