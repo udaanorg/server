@@ -17,6 +17,7 @@ Welcome to Udaan's server!
 
 ```bash
 $ npm run build
+$ npx typeorm schema:sync # Run this during the first time only
 $ npm start
 ```
 
