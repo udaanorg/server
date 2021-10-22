@@ -1,5 +1,5 @@
 import express from "express";
-import KitchenService from "../services/kitchenService";
+import KitchenService from "../services/KitchenService";
 
 const kitchenRouter = express.Router();
 

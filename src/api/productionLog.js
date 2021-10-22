@@ -1,5 +1,5 @@
 import express from "express";
-import productionLogService from "../services/productionLogService";
+import ProductionLogService from "../services/ProductionLogService";
 
 const productionLogRouter = express.Router();
 
@@ -12,7 +12,7 @@ const productionLogRouter = express.Router();
 
 productionLogRouter.get("/all", async (req, res) => {
     try {
-        const data = await productionLogService.getAllProductionLogs();
+        const data = await ProductionLogService.getAllProductionLogs();
         res.json(data);
     } catch (err) {
         console.error(err);
@@ -33,7 +33,7 @@ productionLogRouter.get("/all", async (req, res) => {
 
 productionLogRouter.post("/", async (req, res) => {
     try {
-        await productionLogService.createProductionLog({...req.body});
+        await ProductionLogService.createProductionLog({...req.body});
         res.json({ message: "Created" });
     } catch (err) {
         console.error(err);
