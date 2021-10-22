@@ -1,10 +1,10 @@
 import express from "express";
-import kitchenService from "../services/kitchenService";
+import KitchenService from "../services/kitchenService";
 
 const kitchenRouter = express.Router();
 
 /**
- * @api {get} /api/v1/kitchen/all Get all kitchens
+ * @api {get} /api/v1/kitchen/all Get all Kitchens
  * @apiName Kitchen
  * @apiGroup Kitchen
  * @apiError (ServerError) {json} 500 
@@ -12,7 +12,7 @@ const kitchenRouter = express.Router();
 
 kitchenRouter.get("/all", async (req, res) => {
     try {
-        const data = await kitchenService.getAllKitchens();
+        const data = await KitchenService.getAllKitchens();
         res.json(data);
     } catch (err) {
         console.error(err);
@@ -29,7 +29,7 @@ kitchenRouter.get("/all", async (req, res) => {
 
 kitchenRouter.get("/one/:id", async(req, res) => {
     try {
-        const data = await kitchenService.getKitchenById(req.params.id);
+        const data = await KitchenService.getKitchenById(req.params.id);
         res.json(data);
     } catch (err) {
         console.error(err);
@@ -38,7 +38,7 @@ kitchenRouter.get("/one/:id", async(req, res) => {
 });
 
 /**
- * @api {post} /api/v1/kicthen/ Insert kicthen 
+ * @api {post} /api/v1/kicthen/ Insert Kitchen
  * @apiName Kitchen
  * @apiGroup Kitchen
  * @apiParam {string} id
@@ -51,7 +51,7 @@ kitchenRouter.get("/one/:id", async(req, res) => {
 
 kitchenRouter.post("/", async (req, res) => {
     try {
-        await kitchenService.createKitchen({...req.body});
+        await KitchenService.createKitchen({...req.body});
         res.json({ message: "Created" });
     } catch (err) {
         console.error(err);
