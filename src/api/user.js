@@ -46,11 +46,11 @@ userRouter.post('/login', async (req, res) => {
             res.status(400).json({ message: 'Client Error' });
             return;
         }
-        res.cookie('token', serviceResponse, {
+        res.cookie('token', serviceResponse.token, {
             maxAge: 3 * 24 * 60 * 60,
             httpOnly: true
         });
-        res.status(200).json({ message: 'OK' });
+        res.status(200).json(serviceResponse);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error!' });

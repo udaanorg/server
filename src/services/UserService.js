@@ -24,31 +24,6 @@ class UserService {
     }
 
     /**
-     * Get a user using id
-     * @param id id of the user
-     * @returns a user (email, name, kitchenId, dateOfBirth)
-     */
-    async getUser(id) {
-        try {
-
-            const user = await User.find({
-                select: ['email', 'name', 'kitchen', 'dateOfBirth'],
-                where: {
-                    id: id
-                }
-            });
-            
-            if (user.length === 0) {
-                throw new Error('User not found!');
-            }
-
-            return user[0];
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
-    /**
      * Signup your user
      * @param data properties: {email, password, kitchen, name, dateOfBirth}
      */
@@ -91,13 +66,17 @@ class UserService {
                 throw new Error('Invalid email/password');
             }
 
-            const id = await this.comparePasswordAndReturnId(email, password);
+            const userData = await this.comparePasswordAndReturnData(email, password);
 
-            if (!id) {
+            if (!userData) {
                 throw new Error('Invalid email/password');
             }
             
-            return this.createJWT(id);
+            
+            return {
+                token: this.createJWT(userData.id),
+                ...userData
+            }
         } catch (err) {
             console.error(err);
             return new Error('Log in error!');
@@ -154,12 +133,11 @@ class UserService {
         return token;
     }
 
-    async comparePasswordAndReturnId(email, password) {
+    async comparePasswordAndReturnData(email, password) {
 
         try {
 
             const user = await User.findOne({
-                select: ['id', 'password'],
                 where: {
                     email
                 }
@@ -168,7 +146,12 @@ class UserService {
             const isGood = await bcrypt.compare(password, user.password.toString());
             
             if (isGood) {
-                return user.id;
+                return {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                    dateOfBirth: user.dateOfBirth
+                }
             }
         } catch (err) {
             console.error(err);
