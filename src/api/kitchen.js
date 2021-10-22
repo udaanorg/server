@@ -21,7 +21,7 @@ kitchenRouter.get("/all", async (req, res) => {
 });
 
 /**
- * @api {get} /api/v1/kicthen/one/:id Get all prodution logs
+ * @api {get} /api/v1/kicthen/one/:id Get Kitchen by Id
  * @apiName Kitchen
  * @apiGroup Kitchen
  * @apiError (ServerError) {json} 500 
