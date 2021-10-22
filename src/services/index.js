@@ -1,9 +1,11 @@
+import UserService from './UserService'
 import MonthlyLogService from './MonthlyLogService'
-import ProductionLogService from "./ProductionLogService";
-import KitchenService from "./KitchenService";
+import ProductionLogService from './ProductionLogService';
+import KitchenService from './KitchenService';
 
 export {
-    ProductionLogService,
+    UserService,
     KitchenService,
-    MonthlyLogService   
+    MonthlyLogService,
+    ProductionLogService,
 }
