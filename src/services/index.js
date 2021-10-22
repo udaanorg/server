@@ -1,7 +1,7 @@
 import ProductionLogService from "./ProductionLogService";
-import KitchenService from "./kitchenService";
+import KitchenService from "./KitchenService";
 
 export {
     ProductionLogService,
-    KitchenServcie
+    KitchenService
 }
