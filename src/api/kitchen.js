@@ -21,7 +21,7 @@ kitchenRouter.get("/all", async (req, res) => {
 });
 
 /**
- * @api {get} /api/v1/kicthen/one/:id Get Kitchen by Id
+ * @api {get} /api/v1/kitchen/one/:id Get Kitchen by Id
  * @apiName Kitchen
  * @apiGroup Kitchen
  * @apiError (ServerError) {json} 500 
@@ -38,7 +38,7 @@ kitchenRouter.get("/one/:id", async(req, res) => {
 });
 
 /**
- * @api {post} /api/v1/kicthen/ Insert Kitchen
+ * @api {post} /api/v1/kitchen/ Insert Kitchen
  * @apiName Kitchen
  * @apiGroup Kitchen
  * @apiParam {string} id
