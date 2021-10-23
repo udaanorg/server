@@ -1,6 +1,6 @@
 import { Kitchen } from "../database";
 
-class KitchenServcie {
+class KitchenService {
     
     async getAllKitchens() {
         try {
@@ -32,4 +32,4 @@ class KitchenServcie {
 
 }
 
-export default new KitchenServcie();
+export default new KitchenService();
