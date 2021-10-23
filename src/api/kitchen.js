@@ -1,5 +1,6 @@
-import express from "express";
-import KitchenService from "../services/KitchenService";
+import express from 'express';
+import { KitchenService } from '../services'
+import { verifyTokenMiddleWare } from './user';
 
 const kitchenRouter = express.Router();
 
@@ -36,6 +37,8 @@ kitchenRouter.get("/one/:id", async(req, res) => {
         res.json({ message: 'Server Error' });
     }
 });
+
+kitchenRouter.use('/', verifyTokenMiddleWare);
 
 /**
  * @api {post} /api/v1/kitchen/ Insert Kitchen
