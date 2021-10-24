@@ -1,5 +1,6 @@
-import express from "express";
-import ProductionLogService from "../services/ProductionLogService";
+import express from 'express';
+import { ProductionLogService } from '../services/';
+import { verifyTokenMiddleWare } from './user';
 
 const productionLogRouter = express.Router();
 
@@ -9,7 +10,6 @@ const productionLogRouter = express.Router();
  * @apiGroup ProductionLog
  * @apiError (ServerError) {json} 500 
 */
-
 productionLogRouter.get("/all", async (req, res) => {
     try {
         const data = await ProductionLogService.getAllProductionLogs();
@@ -19,6 +19,8 @@ productionLogRouter.get("/all", async (req, res) => {
         res.json({ message: 'Server Error' });
     }
 });
+
+productionLogRouter.use('/', verifyTokenMiddleWare);
 
 /**
  * @api {post} /api/v1/productionLog/ Insert production Log
@@ -30,7 +32,6 @@ productionLogRouter.get("/all", async (req, res) => {
  * @apiParam {number} quantityLeft none
  * @apiError (ServerError) {json} 500 
 */
-
 productionLogRouter.post("/", async (req, res) => {
     try {
         await ProductionLogService.createProductionLog({...req.body});

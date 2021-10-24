@@ -88,9 +88,14 @@ userRouter.post('/logout', async (req, res) => {
 async function verifyTokenMiddleWare(req, res, next) {
     try {
         const { token } = req.cookies;
+        if (!token) {
+            res.status(400).json({ message: 'Login first' });
+            return;
+        }
         const serviceResponse = await UserService.verifyAndDecodeJWT(token);
         if (serviceResponse instanceof Error) {
             res.status(400).json({ message: 'Client Error' });
+            return;
         }
         req.body.serviceResponse = serviceResponse;
         next();

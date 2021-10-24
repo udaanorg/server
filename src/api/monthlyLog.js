@@ -1,5 +1,6 @@
 import express from 'express';
 import { MonthlyLogService } from '../services';
+import { verifyTokenMiddleWare } from './user';
 
 const monthlyLogRouter = express.Router();
 
@@ -19,6 +20,8 @@ monthlyLogRouter.get('/all', async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 });
+
+monthlyLogRouter.use('/', verifyTokenMiddleWare);
 
 /**
  * @api {post} /api/v1/monthlyLog/ Insert log
