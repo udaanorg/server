@@ -14,6 +14,11 @@ const userRouter = express.Router();
  * @apiParam {string} dateOfBirth 
  * @apiError (ClientError) {json} 400 
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "message": "Created!"
+ *      }
  */
 userRouter.post('/signup', async (req, res) => {
     try {
@@ -37,6 +42,15 @@ userRouter.post('/signup', async (req, res) => {
  * @apiParam {string} password
  * @apiError (ClientError) {json} 400
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "token": "abcd",
+ *          "id": "eyshdhf",
+ *          "name": "someName",
+ *          "email": "email@gmail.com",
+ *          "dateOfBirth": "2001-12-28"
+ *      }
  * @apiDescription Http-Only cookie is set.
  */
 userRouter.post('/login', async (req, res) => {
@@ -65,6 +79,10 @@ userRouter.post('/login', async (req, res) => {
  * @apiError (ClientError) {json} 400
  * @apiError (ServerError) {json} 500 
  * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "message": "Logged Out!"
+ *      }
  * @apiDescription Http-Only cookie is set.
  */
 userRouter.post('/logout', async (req, res) => {
