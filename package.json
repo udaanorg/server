@@ -7,6 +7,7 @@
     "start": "node build/server.js",
     "build": "npm run lint && npm run pretty && npx babel src/ -d build/",
     "lint": "npx eslint . --fix",
+    "docs": "apidoc -i src/api -o apidoc && apidoc-markdown -p apidoc -o docs/API.md",
     "pretty": "npx prettier --write .",
     "test": "npx jest"
   },
