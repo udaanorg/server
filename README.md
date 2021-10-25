@@ -10,7 +10,7 @@ Welcome to Udaan's server!
 
 ## API
 
-The API documentation can found [here](./docs/API.md).
+The API documentation can be found [here](./docs/API.md).
 
 ## setup
 
