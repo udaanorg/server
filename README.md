@@ -7,7 +7,7 @@ Welcome to Udaan's server!
 1. Node.js
 2. MySQL
 
-# API
+## API
 
 The API documentation can found [here](./docs/API.md).
 
