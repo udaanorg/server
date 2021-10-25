@@ -9,6 +9,17 @@ const monthlyLogRouter = express.Router();
  * @apiName MonthlyLog
  * @apiGroup MonthlyLog
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200
+ *      [
+ *          {
+ *              "id": "04740acb-cfa8-4edb-9433-78818eaa5d1c",
+ *              "entryDate": "2021-10-23T07:22:49.894Z",
+ *              "materialName": "noneeee",
+ *              "quantityBought": 555555,
+ *              "quantityLeft": 300
+ *          }
+ *      ]
  */
 monthlyLogRouter.get('/all', async (req, res) => {
 
@@ -32,6 +43,11 @@ monthlyLogRouter.use('/', verifyTokenMiddleWare);
  * @apiParam {number} quantityBought none
  * @apiParam {number} quantityLeft none
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "message": "Created!"
+ *      }
  */
 monthlyLogRouter.post('/', async (req, res) => {
 

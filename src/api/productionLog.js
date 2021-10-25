@@ -9,6 +9,17 @@ const productionLogRouter = express.Router();
  * @apiName ProductionLog
  * @apiGroup ProductionLog
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200
+ *      [
+ *          {
+ *              "id": "04740acb-cfa8-4edb-9433-78818eaa5d1c",
+ *              "entryDate": "2021-10-23T07:22:49.894Z",
+ *              "quantityUsed": 3000,
+ *              "quantityLeft": 555555,
+ *              "platesMade": 300
+ *          }
+ *      ]
 */
 productionLogRouter.get("/all", async (req, res) => {
     try {
@@ -31,6 +42,11 @@ productionLogRouter.use('/', verifyTokenMiddleWare);
  * @apiParam {number} quantityUsed none
  * @apiParam {number} quantityLeft none
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "message": "Created!"
+ *      }
 */
 productionLogRouter.post("/", async (req, res) => {
     try {

@@ -9,6 +9,17 @@ const kitchenRouter = express.Router();
  * @apiName Kitchen
  * @apiGroup Kitchen
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *      HTTP/1.1 200
+ *      [
+ *          {
+ *              "id": "04740acb-cfa8-4edb-9433-78818eaa5d1c",
+ *              "state": "someState",
+ *              "city": "someCity",
+ *              "area": "someArea",
+ *              "pincode": 380006
+ *          }
+ *      ]
 */
 
 kitchenRouter.get("/all", async (req, res) => {
@@ -50,6 +61,11 @@ kitchenRouter.use('/', verifyTokenMiddleWare);
  * @apiParam {string} area none
  * @apiParam {number} pincode none
  * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "message": "Created!"
+ *      }
 */
 
 kitchenRouter.post("/", async (req, res) => {
