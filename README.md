@@ -17,7 +17,8 @@ The API documentation can be found [here](./docs/API.md).
 1. Fork and clone.
 2. Create database `udaanorg` in MySQL.
 3. Get Redis from [here](https://redis.io/download).
-3. Run `npm install` from root of this directory.
+4. You need to create your own `.env` file using the [.env.example](./.env.example) file as a reference. Set the values for `DATABASE_USER` and `DATABASE_PASSWORD` to what you have in your system.
+5. Run `npm install` from root of this directory.
 
 ## build and run
 
