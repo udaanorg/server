@@ -24,7 +24,7 @@ userRouter.post('/signup', async (req, res) => {
     try {
         const serviceResponse = await UserService.signup({ ...req.body });
         if (serviceResponse instanceof Error) {
-            res.status(400).json({ message: 'Client Error' });
+            res.status(400).json({ message: serviceResponse.message });
             return;
         }
         res.status(201).json({ message: 'Created!' });
@@ -57,7 +57,7 @@ userRouter.post('/login', async (req, res) => {
     try {
         const serviceResponse = await UserService.login(req.body.email, req.body.password);
         if (serviceResponse instanceof Error) {
-            res.status(400).json({ message: 'Client Error' });
+            res.status(400).json({ message: serviceResponse.message });
             return;
         }
         res.cookie('token', serviceResponse.token, {
@@ -89,7 +89,7 @@ userRouter.post('/logout', async (req, res) => {
     try {
         const serviceResponse = await UserService.logout(req.body.token);
         if (serviceResponse instanceof Error) {
-            res.status(400).json({ message: 'Client Error' });
+            res.status(400).json({ message: serviceResponse.message });
             return;
         }
         res.cookie('token', '', {
@@ -112,7 +112,7 @@ async function verifyTokenMiddleWare(req, res, next) {
         }
         const serviceResponse = await UserService.verifyAndDecodeJWT(token);
         if (serviceResponse instanceof Error) {
-            res.status(400).json({ message: 'Client Error' });
+            res.status(400).json({ message: serviceResponse.message });
             return;
         }
         req.body.serviceResponse = serviceResponse;

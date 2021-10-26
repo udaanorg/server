@@ -13,6 +13,13 @@ class MonthlyLogService {
             return listFromDB;
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Monthly log error!');
         }
     }
 
@@ -29,6 +36,13 @@ class MonthlyLogService {
             await instance.save();
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Monthly log error!');
         }
     }
 }

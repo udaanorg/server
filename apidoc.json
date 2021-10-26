@@ -1,9 +1,9 @@
 {
-    "name": "udaan",
-    "version": "0.1.0",
-    "description": "API docs for Udaan server.",
-    "title": "Udaan - API docs",
-    "useHostUrlAsSampleUrl": "false",
-    "url": "https://udaantapf.org/",
-    "order": ["User", "Kitchen", "ProductionLog", "MonthlyLog"]
+  "name": "udaan",
+  "version": "0.1.0",
+  "description": "API docs for Udaan server.",
+  "title": "Udaan - API docs",
+  "useHostUrlAsSampleUrl": "false",
+  "url": "https://udaantapf.org/",
+  "order": ["User", "Kitchen", "ProductionLog", "MonthlyLog"]
 }
