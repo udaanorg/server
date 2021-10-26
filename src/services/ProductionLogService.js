@@ -8,6 +8,13 @@ class ProductionLogService {
             return allProductionLogs;
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Production log error!');
         }
     }
 
@@ -18,6 +25,13 @@ class ProductionLogService {
             await newProductionLog.save();
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Production log error!');
         }
     }
     

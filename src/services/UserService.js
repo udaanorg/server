@@ -31,24 +31,33 @@ class UserService {
 
         try {
 
-            console.log(data);
             if (!data.email || !data.password) {
-                throw new Error('Email and/or password missing.');
+                return new Error('Email and/or password missing.');
             }
     
             if (!this.validCredentials(data.email, data.password)) {
-                throw new Error('Email and/or password format violated.');
+                return new Error('Email and/or password format violated.');
             }
     
             if (await this.emailExists(data.email)) {
-                throw new Error('User exists in the database');
+                return new Error('User exists in the database');
+            }
+
+            if (!data.dateOfBirth || !this.validDate(data.dateOfBirth)) {
+                return new Error('Date format is yyyy-mm-dd');
             }
     
             await this.insertUser(data);
 
         } catch (err) {
             console.error(err);
-            return new Error('Sign up error!');
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Sign up error!');
         }
     }
 
@@ -63,13 +72,13 @@ class UserService {
         try {
 
             if (!(await this.emailExists(email))) {
-                throw new Error('Invalid email/password');
+                return new Error('Invalid email/password');
             }
 
             const userData = await this.comparePasswordAndReturnData(email, password);
 
             if (!userData) {
-                throw new Error('Invalid email/password');
+                return new Error('Invalid email/password');
             }
             
             
@@ -79,7 +88,13 @@ class UserService {
             }
         } catch (err) {
             console.error(err);
-            return new Error('Log in error!');
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Log in error!');
         }
     }
 
@@ -94,7 +109,13 @@ class UserService {
             await this.blacklistJWT(token);
         } catch (err) {
             console.error(err);
-            return new Error('Log out error!');
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Logout error!');
         }
     }
 
@@ -117,7 +138,13 @@ class UserService {
             return decoded;
         } catch (err) {
             console.error(err);
-            return new Error('JWT error!');
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('JWT error!');
         }
     }
 
@@ -155,12 +182,18 @@ class UserService {
             }
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Password check error!');
         }
     }
 
     async insertUser(data) {
         try {
-
             const SALT_ROUNDS = 10;
             let user = new User();
             user = Object.assign(user, data);
@@ -168,7 +201,20 @@ class UserService {
             user.save();
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('User insertion error!');
         }
+    }
+
+    validDate(date) {
+
+        const dateRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+        return dateRegex.test(date);
     }
 
     validCredentials(email, password) {
@@ -179,8 +225,6 @@ class UserService {
         //eslint-disable-next-line
         const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 
-        console.log(regexEmail.test(email));
-        console.log(regexPassword.test(password));
         return regexEmail.test(email) && regexPassword.test(password);
     }
 
@@ -197,6 +241,13 @@ class UserService {
             return (list.length > 0);
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Email check error!');
         }
     }
 
@@ -218,6 +269,13 @@ class UserService {
             return id[0];
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('User id check error!');
         }
     }
 }

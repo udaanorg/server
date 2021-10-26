@@ -8,6 +8,13 @@ class KitchenService {
             return allKitchens;
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Kitchen error!');
         }
     }
 
@@ -17,6 +24,13 @@ class KitchenService {
             return kitchen;
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Kitchen error!');
         }
     }
 
@@ -27,6 +41,13 @@ class KitchenService {
             await newKitchen.save();
         } catch (err) {
             console.error(err);
+            if (err instanceof Error) {
+                throw err;
+            }
+            if (typeof err === 'string') {
+                throw new Error(err);
+            }
+            throw new Error('Kitchen error!');
         }
     }
 
