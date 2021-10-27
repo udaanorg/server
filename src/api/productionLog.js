@@ -38,6 +38,7 @@ productionLogRouter.use('/', verifyTokenMiddleWare);
  * @apiName ProductionLog
  * @apiGroup ProductionLog
  * @apiParam {string} kitchen kitchen's id
+ * @apiParam {string} [entryDate] none
  * @apiParam {number} platesMade none
  * @apiParam {number} quantityUsed none
  * @apiParam {number} quantityLeft none
