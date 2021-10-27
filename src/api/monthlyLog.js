@@ -39,6 +39,7 @@ monthlyLogRouter.use('/', verifyTokenMiddleWare);
  * @apiName MonthlyLog
  * @apiGroup MonthlyLog
  * @apiParam {string} kitchen kitchen's id
+ * @apiParam {string} [entryDate] none
  * @apiParam {string} materialName none
  * @apiParam {number} quantityBought none
  * @apiParam {number} quantityLeft none
