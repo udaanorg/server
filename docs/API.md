@@ -283,6 +283,7 @@ POST /api/v1/productionLog/
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | kitchen | `string` | <p>kitchen's id</p> |
+| entryDate | `string` | **optional** <p>none</p> |
 | platesMade | `number` | <p>none</p> |
 | quantityUsed | `number` | <p>none</p> |
 | quantityLeft | `number` | <p>none</p> |
@@ -352,6 +353,7 @@ POST /api/v1/monthlyLog/
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | kitchen | `string` | <p>kitchen's id</p> |
+| entryDate | `string` | **optional** <p>none</p> |
 | materialName | `string` | <p>none</p> |
 | quantityBought | `number` | <p>none</p> |
 | quantityLeft | `number` | <p>none</p> |
