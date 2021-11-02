@@ -71,38 +71,6 @@ userRouter.post('/login', async (req, res) => {
     }
 });
 
-/**
- * @api {post} /api/v1/user/logout User logout
- * @apiName User
- * @apiGroup User
- * @apiParam {string} JWT
- * @apiError (ClientError) {json} 400
- * @apiError (ServerError) {json} 500 
- * @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 201
- *      {
- *          "message": "Logged Out!"
- *      }
- * @apiDescription Http-Only cookie is set.
- */
-userRouter.post('/logout', async (req, res) => {
-    try {
-        const serviceResponse = await UserService.logout(req.body.token);
-        if (serviceResponse instanceof Error) {
-            res.status(400).json({ message: serviceResponse.message });
-            return;
-        }
-        res.cookie('token', '', {
-            maxAge: 3 * 24 * 60 * 60,
-            httpOnly: true
-        });
-        res.status(201).json({ message: 'Logged out!' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Server Error!' });
-    }
-});
-
 async function verifyTokenMiddleWare(req, res, next) {
     try {
         const { token } = req.cookies;
@@ -122,6 +90,40 @@ async function verifyTokenMiddleWare(req, res, next) {
         res.status(500).json({ message: 'Server Error' });
     }
 }
+
+userRouter.use('/', verifyTokenMiddleWare);
+
+/**
+ * @api {post} /api/v1/user/logout User logout
+ * @apiName User
+ * @apiGroup User
+ * @apiError (ClientError) {json} 400
+ * @apiError (ServerError) {json} 500 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 201
+ *      {
+ *          "message": "Logged Out!"
+ *      }
+ * @apiDescription Http-Only cookie is set.
+ */
+ userRouter.post('/logout', async (req, res) => {
+    try {
+        const token = req.body.serviceResponse;
+        const serviceResponse = await UserService.logout(req.body.);
+        if (serviceResponse instanceof Error) {
+            res.status(400).json({ message: serviceResponse.message });
+            return;
+        }
+        res.cookie('token', '', {
+            maxAge: 3 * 24 * 60 * 60,
+            httpOnly: true
+        });
+        res.status(201).json({ message: 'Logged out!' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server Error!' });
+    }
+});
 
 export {
     userRouter,
