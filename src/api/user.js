@@ -109,7 +109,7 @@ userRouter.use('/', verifyTokenMiddleWare);
  userRouter.post('/logout', async (req, res) => {
     try {
         const token = req.body.serviceResponse;
-        const serviceResponse = await UserService.logout(req.body.);
+        const serviceResponse = await UserService.logout(token);
         if (serviceResponse instanceof Error) {
             res.status(400).json({ message: serviceResponse.message });
             return;
